@@ -2,18 +2,22 @@ part of library;
 
 class Article extends ConceptEntity<Article> {
   String _title;
-  String description;
+  String author;
+  String category;
+  int quantity;
+
+
   Borrowings borrowings = new Borrowings(); // internal relationship
 
   String get title => _title;
   set title(String title) {
     _title = title;
     if (code == null) {
-      code = titleCode;
+      code = title;
     }
   }
 
-  String get titleCode => title.replaceAll(' ', '-');
+  
 
   Article newEntity() => new Article();
 
@@ -21,7 +25,7 @@ class Article extends ConceptEntity<Article> {
     return '  {\n'
            '    code: ${code}\n'
            '    tile: ${title}\n'
-           '    description: ${description}\n'
+           '    author: ${author}\n'
            '  }\n';
   }
 
@@ -29,7 +33,9 @@ class Article extends ConceptEntity<Article> {
     Map<String, Object> entityMap = new Map<String, Object>();
     entityMap['code'] = code;
     entityMap['title'] = title;
-    entityMap['description'] = description;
+    entityMap['author'] = author;
+    entityMap['category'] = category;
+    entityMap['quantity'] = quantity;
     entityMap['borrowings'] = borrowings.toJson();
     return entityMap;
   }
@@ -37,7 +43,9 @@ class Article extends ConceptEntity<Article> {
   fromJson(Map<String, Object> entityMap) {
     code = entityMap['code'];
     title = entityMap['title'];
-    description = entityMap['description'];
+    author = entityMap['author'];
+    category = entityMap['category'];
+    quantity = entityMap['quantity'];
     try {
       borrowings.fromJson(entityMap['borrowings']);
       borrowings.forEach((borrowing) {borrowing.article = this;});

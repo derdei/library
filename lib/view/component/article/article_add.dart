@@ -10,7 +10,9 @@ class ArticleAdd extends PolymerElement {
 
   add(Event e, var detail, Node target) {
     InputElement title = $['title'];
-    InputElement description = $['description'];
+    InputElement author = $['author'];
+    InputElement category = $['category'];
+    InputElement quantity = $['quantity'];
     Element message = $['message'];
     var error = false;
     message.text = '';
@@ -21,7 +23,9 @@ class ArticleAdd extends PolymerElement {
     if (!error) {
       var article = new Article();
 	    article.title = title.value;
-	    article.description = description.value;
+	    article.author = author.value;
+	    article.category = category.value;
+	    article.quantity = int.parse(quantity.value);
       if (articles.add(article)) {
         message.text = 'added';
         articles.order();

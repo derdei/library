@@ -6,7 +6,7 @@ import '../library.dart';
 @CustomTag('polymer-app')
 class PolymerApp extends PolymerElement {
   static const String USER_BORROWINGS = 'polymer-user-borrowings';
-  static const String ARTICLE_BORROWINGS = 'polymer-article-borrowings';
+  static const String ARTICLE_BORROWINGS = 'articles';
 
   BorrowingsModel borrowingsModel;
   @observable Users users;

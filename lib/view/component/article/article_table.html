@@ -76,7 +76,9 @@
       </caption>
       <tr>
         <th>Name</th>
-        <th>Description</th>
+        <th>Author</th>
+        <th>category</th>
+        <th>quantity</th>
         <th>Edit</th>
         <th>Remove</th>
         <th>Borrowings</th>
@@ -84,7 +86,9 @@
       <tbody template repeat="{{article in articles.internalList}}">
         <tr>
           <td>{{article.title}}</td>
-          <td>{{article.description}}</td>
+          <td>{{article.author}}</td>
+           <td>{{article.category}}</td>
+          <td>{{article.quantity}}</td>
           <td><button on-click="{{edit}}" code="{{article.code}}">Edit</button></td>
           <td><button on-click="{{delete}}" code="{{article.code}}">Remove</button></td>
           <td><button on-click="{{showArticleBorrowings}}" code="{{article.code}}">Show</button>
