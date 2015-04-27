@@ -1,0 +1,50 @@
+<link rel="import" href="../../../packages/library/view/component/user/user_table.html">
+<link rel="import" href="../../../packages/library/view/component/article/article_table.html">
+
+<!--
+<link rel="import" href="../../../packages/library/view/component/user/user_registration.html">
+ <user-registration id="user-registration">
+    </user-registration>
+-->
+<polymer-element name="polymer-app">
+  <template>
+    <style>
+      button {
+        padding: 1px;
+        background: #ffcc99;
+        border-right: 1px solid #999;
+        border-bottom: 1px solid #999;
+        border-style: outset;
+        border-color: #d7b9c9;
+        font-weight: bold;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      button:active {
+        background: orangered;
+        border-color: blue;
+      }
+      .page-title {
+        font-family: arial, sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+        color: #003366;
+        padding: 12px;
+      }
+    </style>
+    <div class="page-title">
+      Article Borrowings
+      <button on-click="{{save}}">Save</button>
+    </div>
+    <article-table id="article-table"
+      articles="{{articles}}">
+    </article-table>
+    <br/>
+    <user-table id="user-table"
+      users="{{users}}">
+    </user-table>
+   
+  </template>
+  <script type="application/dart" src="polymer_app.dart"></script>
+</polymer-element>

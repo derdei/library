@@ -1,0 +1,110 @@
+Questions
+
+===
+In task_table:
+<template if="{{project != null}}">
+  Tasks of {{project.name}}
+  <button id="show-add" class="button" on-click="show">Show Add</button>
+</template>
+ButtonElement showAddButton = $['show-add'];
+Cannot find the button by using its id!?
+===
+
+===
+How to select by name and use code?
+Now, select by code in task_add.html
+    <select id="employee-lookup">
+      <option template repeat="{{employee in employees.internalList}}">{{employee.code}}</option>
+    </select>
+and use code in task_add.dart
+SelectElement employeeLookup = $['employee-lookup'];
+...
+String code = employeeLookup.value;
+===
+
+===
+Remove project (with its tasks). In employee tasks of the removed project,
+the removed project task is still there!?
+
+In project_table.dart:
+  delete(Event e, var detail, Element target) {
+    ...
+    // the problem remains even with the following
+    var polymerApp = querySelector('#polymer-app');
+    var employeeTable = polymerApp.shadowRoot.querySelector('#employee-table');
+    var taskTable = employeeTable.shadowRoot.querySelector('#task-table');
+    taskTable.tasks.order();
+  }
+
+Perhaps, we need in employee_table.html:
+    <template if="{{showTasks}}">
+      <task-table id="{{employee.code}}-task-table"
+        employee="{{employee}}"
+      >
+      </task-table>
+    </template>
+
+or
+
+in delete of project_table.dart iterate over all employees
+to find project tasks that should be removed from employee tasks
+
+or
+
+manage this directly in the model.
+
+Simple solution:
+In project_table.dart:
+  delete(Event e, var detail, Element target) {
+    String code = target.attributes['code'];
+    project = projects.find(code);
+    projects.remove(project);
+    showTasks = false;
+  }
+  ->
+    delete(Event e, var detail, Element target) {
+    String code = target.attributes['code'];
+    project = projects.find(code);
+    for (var task in project.tasks) {
+      task.employee.tasks.remove(task); // external
+    }
+    projects.remove(project); // internal
+    showTasks = false;
+  }
+
+The same for:
+Remove employee (with its tasks). In project tasks of the removed employee,
+the removed empolyee task is still there!?
+Solution:
+In employee_table.dart:
+  delete(Event e, var detail, Element target) {
+    String code = target.attributes['code'];
+    employee = employees.find(code);
+    for (var task in employee.tasks) {
+      task.project.tasks.remove(task); // internal
+    }
+    employees.remove(employee); // external
+    showTasks = false;
+  }
+An alternative is to hide the Remove button in the employee table
+if there is at least one task assigned to the employee.
+===
+
+===
+I wish I could remove set for internalList in dartlero and dartling.
+Now
+toObservable(employees.internalList);
+does not refresh, while
+employees.internalList = toObservable(employees.internalList);
+does refresh.
+This exposes an internal list to the external world,
+which breaks an encapsulation of entities.
+===
+
+===
+Can a Polymer component use CSS outside of the component?
+https://code.google.com/p/dart/issues/detail?id=12434
+===
+
+
+

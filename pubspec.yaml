@@ -1,0 +1,12 @@
+name: library
+version: 0.0.1
+author: Equipe N°1
+description: A Polymer example with a many-to-many relationship and a lookup web component.
+homepage: http://ondart.me/
+dependencies:
+  browser: any
+  dartlero: any
+  polymer: any
+transformers:
+- polymer:
+    entry_points: web/index.html
