@@ -3,12 +3,12 @@
     <table width="245" border="0">
     <tr>
       <td width="85">First Name </td>
-      <td width="147"><input name="firstName" type="text" id="firstName" /></td>
+      <td width="147"><input name="firstName" type="text" id="first-name" /></td>
     </tr>
     <tr>
       <td><label>Last Name</label></td>
       <td><label>
-        <input name="lastName" type="text" id="lastName" />
+        <input name="lastName" type="text" id="last-name" />
       </label></td>
     </tr>
     <tr>
@@ -30,10 +30,11 @@
     <tr>
       <td><label></label></td>
       <td><label>
-      <input name="registration" type="submit" id="registration" value="Registration" />
+      <button on-click="{{add}}">Registration</button>
       </label></td>
     </tr>
   </table>
+  
     <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
     <span id="message"></span>
   </template>

@@ -45,9 +45,15 @@ class Borrowing extends ConceptEntity<Borrowing> {
     code = entityMap['code'];
     String userCode = entityMap['user'];
     user = BorrowingsModel.one().users.find(userCode);
-    user.borrowings.add(this);
-    // Article --< Borrowing is internal; User --< Borrowing is external
-    description = entityMap['description'];
+    try {
+      user.borrowings.add(this);
+      // Article --< Borrowing is internal; User --< Borrowing is external
+      description = entityMap['description'];
+        } catch(exception, stackTrace) {
+          print("empty for this!");
+          
+        }
+
   }
 }
 

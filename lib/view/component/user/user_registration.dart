@@ -1,11 +1,12 @@
 import 'dart:html';
 import 'package:library/library.dart';
 import 'package:polymer/polymer.dart';
+import 'dart:convert';
 
 @CustomTag('user-registration')
 class UserRegistration extends PolymerElement {
-  @published Users users;
-
+  @published Users users=new Users();
+  static const String USER_BORROWINGS = 'polymer-user-borrowings';
   UserRegistration.created() : super.created();
 
   add(Event e, var detail, Node target) {
@@ -32,7 +33,10 @@ class UserRegistration extends PolymerElement {
 	    user.firstName = firstName.value;
 	    user.lastName = lastName.value;
 	    user.email = email.value;
+	    loadUsers();
       if (users.add(user)) {
+        
+       saveUsers(users);
         message.text = 'added';
         users.order();
       } else {
@@ -40,4 +44,17 @@ class UserRegistration extends PolymerElement {
       }
     }
   }
+  saveUsers(Users users) {
+      window.localStorage[USER_BORROWINGS] = JSON.encode(users.toJson());
+    }
+  loadUsers() {
+      String json = window.localStorage[USER_BORROWINGS];
+      if (json == null) {
+        
+      } else {
+        users.fromJson(JSON.decode(json));
+      }
+      users.order();
+    }
+
 }

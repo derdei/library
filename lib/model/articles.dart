@@ -38,8 +38,15 @@ class Article extends ConceptEntity<Article> {
     code = entityMap['code'];
     title = entityMap['title'];
     description = entityMap['description'];
-    borrowings.fromJson(entityMap['borrowings']);
-    borrowings.forEach((borrowing) {borrowing.article = this;});
+    try {
+      borrowings.fromJson(entityMap['borrowings']);
+      borrowings.forEach((borrowing) {borrowing.article = this;});
+    } catch(exception, stackTrace) {
+      print("empty for this!");
+      
+    }
+    
+   
   }
 }
 

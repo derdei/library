@@ -84,8 +84,8 @@ class BorrowingsModel extends ConceptModel {
       print(article.toString());
       print('    Borrowings');
       print('    -----');
-      for (var task in article.borrowings) {
-        print(task.toString());
+      for (var borrowing in article.borrowings) {
+        print(borrowing.toString());
       }
     }
     print('===========');
