@@ -3,19 +3,23 @@ part of library;
 class User extends ConceptEntity<User> {
   String lastName;
   String firstName;
+  String phone;
   String _email;
+  String password;
+  String privilege;
+  
   Borrowings borrowings = new Borrowings(); // external relationship
 
   String get email => _email;
   set email(String email) {
     _email = email;
     if (code == null) {
-      code = emailCode;
+      code = email;
     }
   }
 
   String get name => '${lastName}, ${firstName}';
-  String get emailCode => email.replaceAll('.', '-').replaceAll('@', '-');
+ // String get emailCode => email.replaceAll('.', '-').replaceAll('@', '-');
 
   User newEntity() => new User();
 
@@ -24,7 +28,10 @@ class User extends ConceptEntity<User> {
            '    code: ${code}\n'
            '    firstName: ${firstName}\n'
            '    lastName: ${lastName}\n'
+           '    phone: ${phone}\n'
            '    email: ${email}\n'
+           '    password: ${password}\n'
+           '    privilege: ${privilege}\n'
            '  }\n';
   }
 
@@ -49,7 +56,11 @@ class User extends ConceptEntity<User> {
     entityMap['code'] = code;
     entityMap['lastName'] = lastName;
     entityMap['firstName'] = firstName;
+    entityMap['phone'] = phone;
     entityMap['email'] = email;
+    entityMap['password'] = password;
+    entityMap['privilege'] = privilege;
+
     return entityMap;
   }
 
@@ -57,7 +68,11 @@ class User extends ConceptEntity<User> {
     code = entityMap['code'];
     lastName = entityMap['lastName'];
     firstName = entityMap['firstName'];
+    phone = entityMap['phone'];
     email = entityMap['email'];
+    password = entityMap['password'];
+    privilege = entityMap['privilege'];
+
   }
 }
 

@@ -6,13 +6,17 @@ import 'dart:convert';
 @CustomTag('user-registration')
 class UserRegistration extends PolymerElement {
   @published Users users=new Users();
-  static const String USER_BORROWINGS = 'polymer-user-borrowings';
+  static const String USER_BORROWINGS = 'p-u-b-3';
+  //'polymer-user-borrowings';
   UserRegistration.created() : super.created();
 
   add(Event e, var detail, Node target) {
     InputElement firstName = $['first-name'];
     InputElement lastName = $['last-name'];
     InputElement email = $['email'];
+    InputElement privilege = $['privilege'];
+    InputElement phone = $['phone'];
+    InputElement password = $['password'];
     Element message = $['message'];
     var error = false;
     message.text = '';
@@ -33,6 +37,9 @@ class UserRegistration extends PolymerElement {
 	    user.firstName = firstName.value;
 	    user.lastName = lastName.value;
 	    user.email = email.value;
+	    user.privilege=privilege.value;
+	    user.password=password.value;
+	    user.phone=phone.value;
 	    loadUsers();
       if (users.add(user)) {
         

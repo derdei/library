@@ -5,7 +5,8 @@ import '../library.dart';
 
 @CustomTag('polymer-app')
 class PolymerApp extends PolymerElement {
-  static const String USER_BORROWINGS = 'polymer-user-borrowings';
+  static const String USER_BORROWINGS = 'p-u-b-3';
+  //'polymer-user-borrowings';
   static const String ARTICLE_BORROWINGS = 'polymer-article-borrowings';
 
   BorrowingsModel borrowingsModel;
@@ -27,7 +28,7 @@ articles.internalList = toObservable(articles.internalList);
   loadUsers() {
     String json = window.localStorage[USER_BORROWINGS];
     if (json == null) {
-      borrowingsModel.init();
+      //borrowingsModel.init();
     } else {
       users.fromJson(JSON.decode(json));
     }
@@ -37,7 +38,12 @@ articles.internalList = toObservable(articles.internalList);
   loadArticles() {
     String json = window.localStorage[ARTICLE_BORROWINGS];
     if (json != null) {
-      articles.fromJson(JSON.decode(json));
+      try {
+        //articles.fromJson(JSON.decode(json));
+          } catch(exception, stackTrace) {
+            print("empty for this!");
+            
+          }
     }
     articles.order();
   }

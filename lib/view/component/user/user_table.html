@@ -77,6 +77,9 @@
       <tr>
         <th>Name</th>
         <th>Email</th>
+        <th>Phone</th>
+        <th>Privilege</th>
+        
         <th>Edit</th>
         <th>Remove</th>
         <th>Borrowings</th>
@@ -85,6 +88,8 @@
         <tr>
           <td>{{user.name}}</td>
           <td>{{user.email}}</td>
+          <td>{{user.phone}}</td>
+          <td>{{user.privilege}}</td>
           <td><button on-click="{{edit}}" code="{{user.code}}">Edit</button></td>
           <td><button on-click="{{delete}}" code="{{user.code}}">Remove</button></td>
           <td><button on-click="{{showUserBorrowings}}" code="{{user.code}}">Show</button>
@@ -94,8 +99,7 @@
     </table>
     <template if="{{showBorrowings}}">
       <borrowing-table id="borrowing-table"
-        user="{{user}}"
-      >
+        user="{{user}}">
       </borrowing-table>
     </template>
   </template>
