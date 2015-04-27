@@ -1,11 +1,10 @@
 <link rel="import" href="../../../packages/library/view/component/user/user_table.html">
 <link rel="import" href="../../../packages/library/view/component/article/article_table.html">
 
-<!--
+
 <link rel="import" href="../../../packages/library/view/component/user/user_registration.html">
- <user-registration id="user-registration">
-    </user-registration>
--->
+
+
 <polymer-element name="polymer-app">
   <template>
     <style>
@@ -44,6 +43,8 @@
     <user-table id="user-table"
       users="{{users}}">
     </user-table>
+    <user-registration id="user-registration">
+    </user-registration>
   </template>
   <script type="application/dart" src="polymer_app.dart"></script>
 </polymer-element>
