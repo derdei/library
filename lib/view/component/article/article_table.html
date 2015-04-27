@@ -79,7 +79,7 @@
         <th>Description</th>
         <th>Edit</th>
         <th>Remove</th>
-        <th>Tasks</th>
+        <th>Borrowings</th>
       </tr>
       <tbody template repeat="{{article in articles.internalList}}">
         <tr>
@@ -87,13 +87,13 @@
           <td>{{article.description}}</td>
           <td><button on-click="{{edit}}" code="{{article.code}}">Edit</button></td>
           <td><button on-click="{{delete}}" code="{{article.code}}">Remove</button></td>
-          <td><button on-click="{{showProjectTasks}}" code="{{article.code}}">Show</button>
+          <td><button on-click="{{showArticleBorrowings}}" code="{{article.code}}">Show</button>
           </td>
         </tr>
       </tbody>
     </table>
-    <template if="{{showTasks}}">
-      <borrowing-table id="task-table"
+    <template if="{{showBorrowings}}">
+      <borrowing-table id="borrowing-table"
         article="{{article}}"
       >
       </borrowing-table>

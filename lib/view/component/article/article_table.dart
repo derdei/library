@@ -39,7 +39,7 @@ class ArticleTable extends PolymerElement {
     showBorrowings = false;
   }
 
-  showProjectTasks(Event e, var detail, Element target) {
+  showArticleBorrowings(Event e, var detail, Element target) {
     String code = target.attributes['code'];
     ButtonElement borrowingsButton = target;
     if (!showBorrowings && borrowingsButton.text == 'Show') {
