@@ -6,7 +6,7 @@ import 'dart:convert';
 @CustomTag('user-registration')
 class UserRegistration extends PolymerElement {
   @published Users users=new Users();
-  static const String USER_BORROWINGS = 'p-u-b-3';
+  static const String USER_BORROWINGS = 'user-borrowings';
   //'polymer-user-borrowings';
   UserRegistration.created() : super.created();
 
@@ -55,6 +55,7 @@ class UserRegistration extends PolymerElement {
       window.localStorage[USER_BORROWINGS] = JSON.encode(users.toJson());
     }
   loadUsers() {
+    users.clear();
       String json = window.localStorage[USER_BORROWINGS];
       if (json == null) {
         

@@ -32,7 +32,7 @@ class BorrowingsModel extends ConceptModel {
   init() {
     var article1 = new Article();
     article1.title = 'Learning Dart by Articles';
-    article1.description = 'A book about Dart by Dzenan and Ivo';
+    article1.category = 'A book about Dart by Dzenan and Ivo';
     articles.add(article1);
 
     var user1 = new User();
@@ -63,7 +63,7 @@ class BorrowingsModel extends ConceptModel {
 
     var article2 = new Article();
     article2.title = 'On Dart';
-    article2.description = 'A web site for On Dart Education';
+    article2.author = 'A web site for On Dart Education';
     articles.add(article2);
 
     var borrowing3 = new Borrowing();

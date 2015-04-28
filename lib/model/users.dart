@@ -19,7 +19,7 @@ class User extends ConceptEntity<User> {
   }
 
   String get name => '${lastName}, ${firstName}';
- // String get emailCode => email.replaceAll('.', '-').replaceAll('@', '-');
+  String get emailCode => email.replaceAll('.', '-').replaceAll('@', '-');
 
   User newEntity() => new User();
 
@@ -35,6 +35,9 @@ class User extends ConceptEntity<User> {
            '  }\n';
   }
 
+  
+ 
+  
   /**
    * Compares two users based on last names, then on first names.
    * If the result is less than 0 then the first member is less than the second,
@@ -60,6 +63,8 @@ class User extends ConceptEntity<User> {
     entityMap['email'] = email;
     entityMap['password'] = password;
     entityMap['privilege'] = privilege;
+    entityMap['borrowings'] = borrowings.toJson();
+
 
     return entityMap;
   }
@@ -72,12 +77,27 @@ class User extends ConceptEntity<User> {
     email = entityMap['email'];
     password = entityMap['password'];
     privilege = entityMap['privilege'];
-
+    try {
+          borrowings.fromJson(entityMap['borrowings']);
+          borrowings.forEach((borrowing) {borrowing.article = this;});
+        } catch(exception, stackTrace) {
+          print("empty for this!");
+          
+        }
   }
 }
 
 class Users extends ConceptEntities<User> {
   Users newEntities() => new Users();
   User newEntity() => new User();
+ 
+  User findLogin(String email, String password) {
+    var users = new Users();
+      for (var user in users) {
+        if ((user.email == email)&&(user.password == password))
+        return user;
+      }
+      return null;
+    }
 }
 

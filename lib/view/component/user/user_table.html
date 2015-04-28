@@ -1,107 +1,18 @@
-<link rel="import" href="../../../../../packages/library/view/component/user/user_add.html">
-<link rel="import" href="../../../../../packages/library/view/component/user/user_edit.html">
-<link rel="import" href="../../../../../packages/library/view/component/borrowing/borrowing_table.html">
+<link rel="import" href="../../../../../packages/library/view/component/user/user_login.html">
+<link rel="import" href="../../../../../packages/library/view/component/user/user_registration.html">
 
 <polymer-element name="user-table">
   <template>
-    <style>
-      table {
-        border-top: 1px solid #999;
-        border-left: 1px solid #999;
-        border-collapse: collapse;
-      }
-      caption {
-        font-family: arial, sans-serif;
-        font-size: 16px;
-        font-weight: bold;
-        color: #003366;
-        padding: 1px;
-      }
-      th, td {
-        padding: 1px;
-        border-right: 1px solid #999999;
-        border-bottom: 1px solid #999999;
-      }
-      th {
-        font-family: verdana, sans-serif;
-        font-weight: bold;
-        color: #ffffff;
-        background: #336799;
-      }
-      td {
-        background: #ffe4b5;
-      }
-      button {
-        padding: 1px;
-        background: #ffcc99;
-        border-right: 1px solid #999;
-        border-bottom: 1px solid #999;
-        border-style: outset;
-        border-color: #d7b9c9;
-        font-weight: bold;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      button:active {
-        background: orangered;
-        border-color: blue;
-      }
-      .marker {
-        font-family: arial, sans-serif;
-        font-size: 16px;
-        font-weight: bold;
-        color: #003366;
-        background: #ffe4b5;
-        padding: 1px;
-      }
-    </style>
-    <template if="{{showAdd}}">
-      <user-add
-        users="{{users}}"
-      >
-      </user-add>
+  <button id="show-registration" class="button" on-click="{{showRegistration}}">Show registration</button>
+  <div align="center">
+    <template if="{{showRegistrationbool}}">
+      <user-registration id="user-registration"></user-registration>
+    
     </template>
-    <template if="{{showEdit}}">
-      <user-edit
-        users="{{users}}"
-        user="{{user}}"
-      >
-      </user-edit>
+    <template if="{{showLoginbool}}">
+      <user-login id="user-login"></user-login>
     </template>
-    <table>
-      <caption class="marker">
-        Users
-        <button id="show-add" class="button" on-click="{{show}}">Show Add</button>
-      </caption>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Privilege</th>
-        
-        <th>Edit</th>
-        <th>Remove</th>
-        <th>Borrowings</th>
-      </tr>
-      <tbody template repeat="{{user in users.internalList}}">
-        <tr>
-          <td>{{user.name}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.phone}}</td>
-          <td>{{user.privilege}}</td>
-          <td><button on-click="{{edit}}" code="{{user.code}}">Edit</button></td>
-          <td><button on-click="{{delete}}" code="{{user.code}}">Remove</button></td>
-          <td><button on-click="{{showUserBorrowings}}" code="{{user.code}}">Show</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <template if="{{showBorrowings}}">
-      <borrowing-table id="borrowing-table"
-        user="{{user}}">
-      </borrowing-table>
-    </template>
+    </div>
   </template>
   <script type="application/dart" src="user_table.dart"></script>
 </polymer-element>

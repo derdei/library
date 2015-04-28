@@ -2,7 +2,7 @@
 <link rel="import" href="../../../../../packages/library/view/component/article/article_edit.html">
 <link rel="import" href="../../../../../packages/library/view/component/borrowing/borrowing_table.html">
 
-<polymer-element name="article-table">
+<polymer-element name="show-borrowing">
   <template>
     <style>
       table {
@@ -56,55 +56,23 @@
         padding: 1px;
       }
     </style>
-    <template if="{{showAdd}}">
-      <article-add
-        articles="{{articles}}"
-      >
-      </article-add>
+    <template>
     </template>
-    <template if="{{showEdit}}">
-      <article-edit
-        articles="{{articles}}"
-        article="{{article}}"
-      >
-      </article-edit>
-    </template>
+    <button on-click="{{show}}">Show my borrowings</button>
     <table>
-      <caption class="marker">
-        Articles
-        <button id="show-add" class="button" on-click="{{show}}">Show Add</button>
-        
-        <button id="show-article" class="button" on-click="{{showArticleBorrowings}}">Show Articles</button>
-       
-      </caption>
+    
       <tr>
-        <th>Name</th>
-        <th>Author</th>
-        <th>category</th>
-        <th>quantity</th>
-        <th>Edit</th>
-        <th>Remove</th>
-        <th>Borrowings</th>
-      </tr>
-      <tbody template repeat="{{article in articles.internalList}}">
+        <th>Title of article & Name of user </th>
+ 
+      <tbody template repeat="{{borrowing in user.borrowings.internalList}}">
         <tr>
-          <td>{{article.title}}</td>
-          <td>{{article.author}}</td>
-           <td>{{article.category}}</td>
-          <td>{{article.quantity}}</td>
-          <td><button on-click="{{edit}}" code="{{article.code}}">Edit</button></td>
-          <td><button on-click="{{delete}}" code="{{article.code}}">Remove</button></td>
-          <td><button on-click="{{showArticleBorrowings}}" code="{{article.code}}">Show</button>
-          </td>
+          <td>{{borrowing.code}}</td>
+           <td></td>
+        
         </tr>
       </tbody>
     </table>
-    <template if="{{showBorrowings}}">
-      <borrowing-table id="borrowing-table"
-        article="{{article}}"
-      >
-      </borrowing-table>
-    </template>
+    
   </template>
-  <script type="application/dart" src="article_table.dart"></script>
+  <script type="application/dart" src="show_borrowings.dart"></script>
 </polymer-element>

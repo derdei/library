@@ -8,16 +8,16 @@ class Article extends ConceptEntity<Article> {
 
 
   Borrowings borrowings = new Borrowings(); // internal relationship
-
-  String get title => _title;
-  set title(String title) {
-    _title = title;
-    if (code == null) {
-      code = title;
-    }
-  }
-
   
+  String get title => _title;
+    set title(String title) {
+      _title = title;
+      if (code == null) {
+        code = nameCode;
+      }
+    }
+
+    String get nameCode => title.replaceAll(' ', '-');
 
   Article newEntity() => new Article();
 
@@ -46,6 +46,7 @@ class Article extends ConceptEntity<Article> {
     author = entityMap['author'];
     category = entityMap['category'];
     quantity = entityMap['quantity'];
+   
     try {
       borrowings.fromJson(entityMap['borrowings']);
       borrowings.forEach((borrowing) {borrowing.article = this;});

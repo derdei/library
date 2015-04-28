@@ -1,8 +1,9 @@
 <link rel="import" href="../../../../../packages/library/view/component/article/article_add.html">
 <link rel="import" href="../../../../../packages/library/view/component/article/article_edit.html">
+<link rel="import" href="../../../../../packages/library/view/component/article/show_borrowings.html">
 <link rel="import" href="../../../../../packages/library/view/component/borrowing/borrowing_table.html">
 
-<polymer-element name="article-table">
+<polymer-element name="article-table-guest">
   <template>
     <style>
       table {
@@ -56,24 +57,22 @@
         padding: 1px;
       }
     </style>
-    <template if="{{showAdd}}">
+   <!-- <template if="{{showAdd}}">
       <article-add
         articles="{{articles}}"
       >
       </article-add>
-    </template>
-    <template if="{{showEdit}}">
-      <article-edit
-        articles="{{articles}}"
-        article="{{article}}"
-      >
-      </article-edit>
-    </template>
+      </template>
+   -->
+    
+    <template if="{{connected}}">
     <table>
       <caption class="marker">
-        Articles
+       <!-- Articles
+        pour l'admin
         <button id="show-add" class="button" on-click="{{show}}">Show Add</button>
-        
+        -->
+       <show-borrowing id="code" email_guest="{{email_guest}}" ></show-borrowing>
         <button id="show-article" class="button" on-click="{{showArticleBorrowings}}">Show Articles</button>
        
       </caption>
@@ -81,30 +80,27 @@
         <th>Name</th>
         <th>Author</th>
         <th>category</th>
-        <th>quantity</th>
-        <th>Edit</th>
-        <th>Remove</th>
+        
+        
         <th>Borrowings</th>
+        
       </tr>
+      
       <tbody template repeat="{{article in articles.internalList}}">
         <tr>
           <td>{{article.title}}</td>
           <td>{{article.author}}</td>
            <td>{{article.category}}</td>
-          <td>{{article.quantity}}</td>
-          <td><button on-click="{{edit}}" code="{{article.code}}">Edit</button></td>
-          <td><button on-click="{{delete}}" code="{{article.code}}">Remove</button></td>
-          <td><button on-click="{{showArticleBorrowings}}" code="{{article.code}}">Show</button>
+          
+        
+          <td><button  code="{{article.title}}" on-click="{{borrow}}">Borrow</button>
           </td>
         </tr>
       </tbody>
     </table>
-    <template if="{{showBorrowings}}">
-      <borrowing-table id="borrowing-table"
-        article="{{article}}"
-      >
-      </borrowing-table>
-    </template>
+    
+    <span id="message"></span></template>
   </template>
-  <script type="application/dart" src="article_table.dart"></script>
+  
+  <script type="application/dart" src="article_table_guest.dart"></script>
 </polymer-element>

@@ -25,32 +25,34 @@ class Borrowing extends ConceptEntity<Borrowing> {
 
   String toString() {
     return '    {\n'
-           '    code: ${code}\n'
-           '      article.title: ${article.title}\n'
-           '      user.email: ${user.email}\n'
+              
            '      description: ${description}\n'
            '    }\n';
   }
 
   Map<String, Object> toJson() {
     Map<String, Object> entityMap = new Map<String, Object>();
-    entityMap['code'] = code;
-    //entityMap['article'] = article.code;
-    entityMap['user'] = user.code;
+    
+   try{entityMap['code'] = code;
+    entityMap['article'] = article.code;
+    entityMap['user'] = user.email;
     entityMap['description'] = description;
+   }catch(Exception,Startack){
+        print ("code nul");
+      }
     return entityMap;
   }
 
   fromJson(Map<String, Object> entityMap) {
     code = entityMap['code'];
-    String userCode = entityMap['user'];
-    user = BorrowingsModel.one().users.find(userCode);
+   
     try {
-      user.borrowings.add(this);
+      user=entityMap['user'];
+      article=entityMap['article'];
       // Article --< Borrowing is internal; User --< Borrowing is external
       description = entityMap['description'];
         } catch(exception, stackTrace) {
-          print("empty for this!");
+          print("user not found!");
           
         }
 

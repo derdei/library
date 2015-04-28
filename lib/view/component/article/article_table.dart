@@ -1,10 +1,12 @@
 import 'dart:html';
 import 'package:library/library.dart';
 import 'package:polymer/polymer.dart';
+import 'dart:convert';
 
 @CustomTag('article-table')
 class ArticleTable extends PolymerElement {
-  @published Articles articles;
+  @published Articles articles=new Articles();
+  static final String ARTICLE_BORROWINGS='articles-borrowings';
   Article article;
   @observable bool showAdd = false;
   @observable bool showEdit = false;
@@ -40,6 +42,8 @@ class ArticleTable extends PolymerElement {
   }
 
   showArticleBorrowings(Event e, var detail, Element target) {
+    loadArticles();
+    print("appuyé");
     String code = target.attributes['code'];
     ButtonElement borrowingsButton = target;
     if (!showBorrowings && borrowingsButton.text == 'Show') {
@@ -52,5 +56,26 @@ class ArticleTable extends PolymerElement {
       showBorrowings = false;
       borrowingsButton.text = 'Show';
     }
+  }
+  
+  showArticles() {
+    loadArticles();
+    print("appuyé");
+    
+    
+    
+  }
+  loadArticles() {
+    articles=new Articles();
+      String json = window.localStorage[ARTICLE_BORROWINGS];
+      if (json == null) {
+        
+      } else {
+        articles.fromJson(JSON.decode(json));
+      }
+      articles.order();
+    }
+  void man(){
+    showArticles();
   }
 }

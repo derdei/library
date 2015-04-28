@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Demo</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+  <link rel="import" href="packages/library/view/component/user/user_table.html">
+ <link rel="import" href="packages/library/view/component/article/article_table_guest.html">
+    <!-- Custom CSS -->
+    <style type="text/css">
+        .paddingmarginZero
+        {
+            padding: 0;
+            margin: 0;
+        }
+        .headerStyle
+        {
+            background-color: #C8EEFF;
+            text-align: center;
+            height: 100px;
+        }
+        .MenuStyle
+        {
+            background-color: #373737;
+            color: #dddddd;
+            text-align: center;
+            height: 40px;
+        }
+        .sidebarStyle
+        {
+            background-color: #A7D97E;
+            height: 400px;
+            text-align: center;
+        }
+        .contentAreaStyle
+        {
+            background-color: #E8E8C2;
+            height: 400px;
+            text-align: center;
+        }
+        .footer1Style
+        {
+            background-color: #7d7e7d;
+            color: #dddddd;
+            height: 150px;
+            text-align: center;
+        }
+        .footer2Style
+        {
+            background-color: #5C5C5C;
+            color: #dddddd;
+            height: 150px;
+            text-align: center;
+        }
+        .footerCopyRightStyle
+        {
+            background-color: #373737;
+            color: #dddddd;
+            height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid paddingmarginZero">
+        <div class="headerStyle">
+            Library App
+        </div>
+        
+        <div class="clearfix">
+        </div>
+        <div class="col-sm-12col-sm-push-5 contentAreaStyle">
+            CONTENT AREA
+             <user-table id="user-login"></user-table>
+     <script type="application/dart">export 'package:polymer/init.dart';</script>
+            
+        </div>
+       
+        <div class="clearfix">
+        </div>
+        
+        <div class="footerCopyRightStyle">
+             EQUIPE 1
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

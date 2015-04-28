@@ -1,0 +1,31 @@
+<polymer-element name="user-login">
+  <template>
+  <template if = "{{!connected}}">   
+   <table width="200" border="1">
+    <tr>
+      <td>Email</td>
+      <td><input type="text" name="email" id="email" />      </td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><input type="password" name="password" id="password" /></td>
+    </tr>
+    <tr>
+      <td colspan=2><label>
+      <button on-click="{{signin}}">SignIn</button>
+      </label></td>
+      
+    </tr>
+  </table>
+  </template>
+  
+  <template if="{{showLoginbool}}">
+  
+      <article-table-guest id="article-table-guest" email_guest={{email2}} connected={{connected}} users={{users}} ></article-table-guest>
+      
+    </template>
+    <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
+    <span id="message"></span>
+  </template>
+  <script type="application/dart" src="user_login.dart"></script>
+</polymer-element>

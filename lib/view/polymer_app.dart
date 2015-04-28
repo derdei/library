@@ -5,15 +5,8 @@ import '../library.dart';
 
 @CustomTag('polymer-app')
 class PolymerApp extends PolymerElement {
-<<<<<<< HEAD
-  static const String USER_BORROWINGS = 'p-u-b-3';
-  //'polymer-user-borrowings';
-  static const String ARTICLE_BORROWINGS = 'polymer-article-borrowings';
-=======
-  static const String USER_BORROWINGS = 'polymer-user-borrowings';
+  static const String USER_BORROWINGS = 'user-borrowings';
   static const String ARTICLE_BORROWINGS = 'articles';
->>>>>>> f7c44c29576f490c5cad77976f80a225ba6c1488
-
   BorrowingsModel borrowingsModel;
   @observable Users users;
   @observable Articles articles;
@@ -27,7 +20,7 @@ class PolymerApp extends PolymerElement {
     load();
     //borrowingsModel.display();
     users.internalList = toObservable(users.internalList);
-articles.internalList = toObservable(articles.internalList);
+    articles.internalList = toObservable(articles.internalList);
   }
 
   loadUsers() {

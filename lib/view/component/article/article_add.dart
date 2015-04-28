@@ -1,10 +1,12 @@
 import 'dart:html';
+import 'dart:convert';
 import 'package:library/library.dart';
 import 'package:polymer/polymer.dart';
 
 @CustomTag('article-add')
 class ArticleAdd extends PolymerElement {
-  @published Articles articles;
+  @published Articles articles=new Articles();
+  static final String ARTICLE_BORROWINGS='articles-borrowings';
 
   ArticleAdd.created() : super.created();
 
@@ -26,7 +28,9 @@ class ArticleAdd extends PolymerElement {
 	    article.author = author.value;
 	    article.category = category.value;
 	    article.quantity = int.parse(quantity.value);
+	    //loadArticles();
       if (articles.add(article)) {
+        saveArticles(articles);
         message.text = 'added';
         articles.order();
       } else {
@@ -34,4 +38,17 @@ class ArticleAdd extends PolymerElement {
       }
     }
   }
+  saveArticles(Articles articles) {
+       window.localStorage[ARTICLE_BORROWINGS] = JSON.encode(articles.toJson());
+     }
+   loadArticles() {
+       String json = window.localStorage[ARTICLE_BORROWINGS];
+       if (json == null) {
+         
+       } else {
+         articles.fromJson(JSON.decode(json));
+       }
+       articles.order();
+     }
+
 }

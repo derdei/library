@@ -3,6 +3,7 @@
 
 
 <link rel="import" href="../../../packages/library/view/component/user/user_registration.html">
+<link rel="import" href="../../../packages/library/view/component/user/user_login.html">
 
 
 <polymer-element name="polymer-app">
@@ -43,8 +44,9 @@
     <user-table id="user-table"
       users="{{users}}">
     </user-table>
-    <user-registration id="user-registration">
-    </user-registration>
+    <!--<user-registration id="user-registration">
+    </user-registration>-->
+    <user-login id="user-login"></user-login>
   </template>
   <script type="application/dart" src="polymer_app.dart"></script>
 </polymer-element>
