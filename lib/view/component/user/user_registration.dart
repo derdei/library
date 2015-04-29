@@ -6,7 +6,7 @@ import 'dart:convert';
 @CustomTag('user-registration')
 class UserRegistration extends PolymerElement {
   @published Users users=new Users();
-  static const String USER_BORROWINGS = 'user-borrowings';
+
   //'polymer-user-borrowings';
   UserRegistration.created() : super.created();
 
@@ -40,10 +40,10 @@ class UserRegistration extends PolymerElement {
 	    user.privilege=privilege.value;
 	    user.password=password.value;
 	    user.phone=phone.value;
-	    loadUsers();
+	    users=new library_model().loaderUsers();
       if (users.add(user)) {
         
-       saveUsers(users);
+        new library_model().saveUsers(users);
         message.text = 'added';
         users.order();
       } else {
@@ -51,18 +51,7 @@ class UserRegistration extends PolymerElement {
       }
     }
   }
-  saveUsers(Users users) {
-      window.localStorage[USER_BORROWINGS] = JSON.encode(users.toJson());
-    }
-  loadUsers() {
-    users.clear();
-      String json = window.localStorage[USER_BORROWINGS];
-      if (json == null) {
-        
-      } else {
-        users.fromJson(JSON.decode(json));
-      }
-      users.order();
-    }
+  
+ 
 
 }

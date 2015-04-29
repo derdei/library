@@ -1,5 +1,4 @@
 <link rel="import" href="../../../../../packages/library/view/component/borrowing/borrowing_add.html">
-<link rel="import" href="../../../../../packages/library/view/component/borrowing/borrowing_edit.html">
 
 <polymer-element name="borrowing-table">
   <template>
@@ -75,24 +74,25 @@
           Borrowings of {{article.title}}
         </template>
         <template if="{{user != null}}">
-          Borrowings of {{user.name}}
+          Borrowings of {{user.email}}
         </template>
-        <button id="show-add" class="button" on-click="{{show}}">Show Add</button>
-      </caption>
+        </caption>
       <tr>
         <th>Article</th>
-        <th>User</th>
-        <th>Description</th>
-        <th>Edit</th>
-        <th>Remove</th>
+        <th>Author</th>
+        <th>DateBorrow</th>
+        <th>DateReturn</th>
+        
+        
       </tr>
       <tbody template repeat="{{borrowing in borrowings.internalList}}">
         <tr>
           <td>{{borrowing.article.title}}</td>
-          <td>{{borrowing.user.name}}</td>
-          <td>{{borrowing.description}}</td>
-          <td><button on-click="{{edit}}" code="{{borrowing.code}}">Edit</button></td>
-          <td><button on-click="{{delete}}" code="{{borrowing.code}}">Remove</button></td>
+          <td>{{borrowing.article.author}}</td>
+          <td>{{borrowing.dateBorrow}}</td>
+          <td>{{borrowing.dateReturn}}</td>
+          
+          
         </tr>
       </tbody>
     </table>

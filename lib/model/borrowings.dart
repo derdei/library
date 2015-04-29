@@ -3,8 +3,9 @@ part of library;
 class Borrowing extends ConceptEntity<Borrowing> {
   Article _article;
   User _user;
-  String description;
-
+  String dateReturn='2015-04-28';
+  String dateBorrow='2015-05-02';
+  
   Article get article => _article;
   set article(Article article) {
     _article = article;
@@ -23,20 +24,17 @@ class Borrowing extends ConceptEntity<Borrowing> {
 
   Borrowing newEntity() => new Borrowing();
 
-  String toString() {
-    return '    {\n'
-              
-           '      description: ${description}\n'
-           '    }\n';
-  }
+  
 
   Map<String, Object> toJson() {
     Map<String, Object> entityMap = new Map<String, Object>();
     
    try{entityMap['code'] = code;
     entityMap['article'] = article.code;
-    entityMap['user'] = user.email;
-    entityMap['description'] = description;
+    entityMap['user'] = user.code;
+    entityMap['dateReturn'] =dateReturn ;
+    entityMap['dateBorrow'] = dateBorrow;
+
    }catch(Exception,Startack){
         print ("code nul");
       }
@@ -50,7 +48,9 @@ class Borrowing extends ConceptEntity<Borrowing> {
       user=entityMap['user'];
       article=entityMap['article'];
       // Article --< Borrowing is internal; User --< Borrowing is external
-      description = entityMap['description'];
+      dateBorrow = entityMap['dateBorrow'];
+      dateReturn = entityMap['dateReturn'];
+
         } catch(exception, stackTrace) {
           print("user not found!");
           

@@ -21,7 +21,9 @@ class BorrowingAdd extends PolymerElement {
       borrowing.article = article;
       String code = userLookup.value;
       borrowing.user = users.find(code);
-      borrowing.description = description.value;
+      borrowing.dateBorrow = '2015-04-28';
+      borrowing.dateReturn = '2015-05-04';
+
       // article.borrowings internal; user.borrowings external
       if (borrowings.add(borrowing) && borrowing.user.borrowings.add(borrowing)) {
         message.text = 'added';

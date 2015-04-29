@@ -18,9 +18,8 @@ class ShowBorrowing extends PolymerElement {
   ShowBorrowing.created() : super.created();
 
   show(Event e, var detail, Element target) {
-    loadUsers();
-    print("appuyé");
-    print(email_guest);
+    users=new library_model().loaderUsers();
+    
     // code = target.attributes['code'];
     //ButtonElement borrowingsButton = target;
    
@@ -32,15 +31,4 @@ class ShowBorrowing extends PolymerElement {
   
  
 
-  
-  loadUsers() {
-    users.clear();
-          String json = window.localStorage[USER_BORROWINGS];
-          if (json == null) {
-            
-          } else {
-            users.fromJson(JSON.decode(json));
-          }
-          users.order();
-        }
 }

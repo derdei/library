@@ -11,8 +11,13 @@ class UserTable extends PolymerElement {
   @observable bool showLoginbool = false;
   @observable bool showEdit = false;
   @observable bool showBorrowings = false;
+  @observable bool showArticleAdmin = false;
 
-  UserTable.created() : super.created();
+  UserTable.created() : super.created(){
+   
+new library_model().loadArticles();
+new library_model().loadUsers();
+  }
   
   showRegistration(Event e, var detail, Node target) {
     ButtonElement showAddButton = $['show-registration'];
@@ -28,7 +33,7 @@ class UserTable extends PolymerElement {
     if(hide_forms){
         showRegistrationbool=false;
         showLoginbool=false;
-        print("heewllljmljk");
+        
       }
     
   }

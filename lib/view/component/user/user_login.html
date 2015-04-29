@@ -18,11 +18,12 @@
     </tr>
   </table>
   </template>
-  
   <template if="{{showLoginbool}}">
-  
-      <article-table-guest id="article-table-guest" email_guest={{email2}} connected={{connected}} users={{users}} ></article-table-guest>
-      
+      <article-table-guest id="article-table-guest" email_guest={{email2}} connected={{connected}} users={{users}} ></article-table-guest>  
+    </template>
+    
+     <template if="{{showArticleAdmin}}">
+      <article-table id="table-table"></article-table>
     </template>
     <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
     <span id="message"></span>

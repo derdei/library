@@ -51,7 +51,7 @@ class Article extends ConceptEntity<Article> {
       borrowings.fromJson(entityMap['borrowings']);
       borrowings.forEach((borrowing) {borrowing.article = this;});
     } catch(exception, stackTrace) {
-      print("empty for this!");
+      print("articles are empty!");
       
     }
     

@@ -77,11 +77,12 @@ class User extends ConceptEntity<User> {
     email = entityMap['email'];
     password = entityMap['password'];
     privilege = entityMap['privilege'];
+   
     try {
           borrowings.fromJson(entityMap['borrowings']);
-          borrowings.forEach((borrowing) {borrowing.article = this;});
+          borrowings.forEach((borrowing) {borrowing.user = this;});
         } catch(exception, stackTrace) {
-          print("empty for this!");
+          print("empty for user!");
           
         }
   }

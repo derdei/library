@@ -31,80 +31,39 @@ class BorrowingsModel extends ConceptModel {
 
   init() {
     var article1 = new Article();
-    article1.title = 'Learning Dart by Articles';
-    article1.category = 'A book about Dart by Dzenan and Ivo';
+    article1.title = 'Être son propre coach : choisir sa vie';
+    article1.category = 'Livre';
+    article1.author = 'Archer Jeff';
+    article1.quantity = 5;
+
+    
     articles.add(article1);
 
     var user1 = new User();
-    user1.firstName = 'Dzenan';
-    user1.lastName = 'Ridjanovic';
-    user1.email = 'dzenanr@gmail.com';
+    user1.firstName = 'Zidane';
+    user1.lastName = 'Zinedine';
+    user1.email = 'zidane@gmail.com';
+    user1.phone = '+1581-888-9999';
+    user1.privilege = 'Guest';
+    user1.password = 'Guest';
     users.add(user1);
 
     var user2 = new User();
-    user2.firstName = 'Ivo';
+    user2.firstName = 'Dzenan';
     user2.lastName = 'Balbaert';
-    user2.email = 'ivo.balbaert@telenet.be';
+    user2.email = 'd.balbaert@orange.fr';
+    user2.phone = '+1581-111-2222';
+    user2.privilege = 'Admin';
+    user2.password = 'Admin';
     users.add(user2);
 
-    var borrowing1 = new Borrowing();
-    borrowing1.article = article1;
-    borrowing1.user = user1;
-    borrowing1.description = 'develop articles';
-    article1.borrowings.add(borrowing1);
-    user1.borrowings.add(borrowing1);
-
-    var borrowing2 = new Borrowing();
-    borrowing2.article = article1;
-    borrowing2.user = user2;
-    borrowing2.description = 'write about articles';
-    article1.borrowings.add(borrowing2);
-    user2.borrowings.add(borrowing2);
-
     var article2 = new Article();
-    article2.title = 'On Dart';
-    article2.author = 'A web site for On Dart Education';
+    article2.title = 'La persévérance, clé de la réussite de sa vie';
+    article2.category = 'CD';
+    article2.author = 'Bouchard Nelson';
+    article2.quantity = 10;
     articles.add(article2);
-
-    var borrowing3 = new Borrowing();
-    borrowing3.article = article2;
-    borrowing3.user = user1;
-    borrowing3.description = 'prepare courses On Dart';
-    article2.borrowings.add(borrowing3);
-    user1.borrowings.add(borrowing3);
-  }
-
-  display() {
-    print('===========');
-    print('Borrowings Model');
-    print('===========');
-    for (var article in articles) {
-      print('  Article');
-      print('  -------');
-      print(article.toString());
-      print('    Borrowings');
-      print('    -----');
-      for (var borrowing in article.borrowings) {
-        print(borrowing.toString());
-      }
-    }
-    print('===========');
-    for (var user in users) {
-      print('  User');
-      print('  --------');
-      print(user.toString());
-      print('    Borrowings');
-      print('    -----');
-      for (var borrowing in user.borrowings) {
-        print(borrowing.toString());
-      }
-    }
-    print(
-      '=========== =========== =========== '
-      '=========== =========== =========== '
-    );
   }
 }
-
 
 

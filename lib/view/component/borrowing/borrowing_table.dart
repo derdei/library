@@ -18,9 +18,14 @@ class BorrowingTable extends PolymerElement {
     if (article != null) borrowings = article.borrowings;
     if (user != null) borrowings = user.borrowings;
     borrowings.internalList = toObservable(borrowings.internalList);
+    
+       
+      
   }
 
   show(Event e, var detail, Node target) {
+   
+    
     ButtonElement showAddButton = $['show-add'];
     if (article == null && showAddButton.text == 'Add by Article') {
       showAddButton.hidden = true;

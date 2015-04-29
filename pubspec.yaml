@@ -9,4 +9,4 @@ dependencies:
   polymer: any
 transformers:
 - polymer:
-    entry_points: web/Demo.html
+    entry_points: web/index.html

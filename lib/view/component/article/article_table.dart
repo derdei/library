@@ -5,8 +5,12 @@ import 'dart:convert';
 
 @CustomTag('article-table')
 class ArticleTable extends PolymerElement {
-  @published Articles articles=new Articles();
+  @published Articles articles;
+  @published Users users;
+  @published User user;
+  @published String email;
   static final String ARTICLE_BORROWINGS='articles-borrowings';
+  static const String USER_BORROWINGS = 'user-borrowings';
   Article article;
   @observable bool showAdd = false;
   @observable bool showEdit = false;
@@ -41,16 +45,28 @@ class ArticleTable extends PolymerElement {
     showBorrowings = false;
   }
 
-  showArticleBorrowings(Event e, var detail, Element target) {
-    loadArticles();
-    print("appuyé");
+  showArticleBorrowings(Event e, var detail, Element target) {  
+    articles=new library_model().loaderArticles();
+    users=new library_model().loaderUsers();
     String code = target.attributes['code'];
+    //String email = target.attributes['email'];
+
+    
     ButtonElement borrowingsButton = target;
     if (!showBorrowings && borrowingsButton.text == 'Show') {
+     
+     
       showBorrowings = true;
       article = articles.find(code);
+      borrowingsButton.text = 'Hide';
+      
+      
+      
+          
       article.borrowings.internalList = toObservable(article.borrowings.internalList);
       article.borrowings.order();
+    
+     
       borrowingsButton.text = 'Hide';
     } else if (showBorrowings && borrowingsButton.text == 'Hide') {
       showBorrowings = false;
@@ -58,24 +74,7 @@ class ArticleTable extends PolymerElement {
     }
   }
   
-  showArticles() {
-    loadArticles();
-    print("appuyé");
-    
-    
-    
-  }
-  loadArticles() {
-    articles=new Articles();
-      String json = window.localStorage[ARTICLE_BORROWINGS];
-      if (json == null) {
-        
-      } else {
-        articles.fromJson(JSON.decode(json));
-      }
-      articles.order();
-    }
-  void man(){
-    showArticles();
-  }
+  
+  
+  
 }

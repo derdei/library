@@ -5,11 +5,16 @@ import 'dart:convert';
 @CustomTag('user-login')
 class UserLogin extends PolymerElement {
   @published Users users=new Users();
+  Articles articles=new Articles();
   @published String email2;
   @published bool connected=false;
+  @published bool showArticleAdmin=false;
+static BorrowingsModel borrowingsModel;
   static const String USER_BORROWINGS = 'user-borrowings';
   @observable bool showLoginbool = false;
-  UserLogin.created() : super.created();
+  UserLogin.created() : super.created(){
+  
+  }
 
   signin(Event e, var detail, Node target) {
 
@@ -29,27 +34,32 @@ class UserLogin extends PolymerElement {
  
     if (!error) {
       var user = new User();
-      
-       //user = users.findLogin(email.value,password.value);
+      users=new library_model().loaderUsers();
+              
       try{
-        loadUsers();
-        user=users.find(email.value);   
+       
+                     user=users.find(email.value);
               if((email.value == user.email)&&(password.value == user.password)){
-                message.text = 'login is ok';
-                //Map<String, int> scores = {'email': email.value};
-                showLoginbool=true;
-                email2=email.value;
-                connected=true;
-                
+                if(user.privilege != 'guest'){
+                  print("toto");
+                  showArticleAdmin=true;
+                  showLoginbool=false;
+                  connected=true;
+
+                }else{
+                  message.text = 'You are logged in';
+                             showLoginbool=true;
+                             email2=email.value;
+                             connected=true;
+                }     
                 
               }
                else {
-                message.text = 'login is not ok';
+                message.text = 'login/password wrong!';
                 
               } }catch(Exception , StackTrace ){
                 
                 message.text = 'this account does not exist';
-                    
       }
     }
     }
@@ -57,14 +67,5 @@ class UserLogin extends PolymerElement {
     window.location.replace("registration.html");
   }
   
-  loadUsers() {
-     String json = window.localStorage[USER_BORROWINGS];
-     if (json == null) {
-       //borrowingsModel.init();
-     } else {
-       users.fromJson(JSON.decode(json));
-     }
-     users.order();
-   }
-
+  
   }
