@@ -1,0 +1,9 @@
+pf
+
+50/60
+(-1) le formatage du code
+(-1) index.html vs. index2.html vs. demo html
+(-1) mot de passe n'est pas nécessaire lors de l'inscription?
+(-1) tim comme courriel?
+(-1) comment retourner un article emprunté
+(-5) l'application ne fournit pas une fonctionnalité minimale
